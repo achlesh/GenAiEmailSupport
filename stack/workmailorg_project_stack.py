@@ -25,7 +25,7 @@ class WorkMailOrgStack(cdk.Stack):
             runtime=aws_lambda.Runtime.PYTHON_3_9,
             function_name='workmail_org_creation',
             code=aws_lambda.Code.from_asset("lambda/workmail-org-user-domain-lambda"),
-            handler="workmailcreateorg.handler",
+            handler="workmailorgsetupfunction.handler",
             environment={
                 'work_org_name': orgname_param.value_as_string,
                 'user_name': username_param.value_as_string,
@@ -55,7 +55,7 @@ class WorkMailOrgStack(cdk.Stack):
             function_name="resource-is-complete-lambda",
             code=aws_lambda.Code.from_asset(
                 "lambda/workmail-org-user-domain-lambda"),
-            handler="workmailcreateorg.is_complete",
+            handler="workmailorgsetupfunction.is_complete",
             runtime=aws_lambda.Runtime.PYTHON_3_9,
             environment={
                 'work_org_name': orgname_param.value_as_string,
